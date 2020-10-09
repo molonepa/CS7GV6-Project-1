@@ -9,11 +9,15 @@ WindowTest: tests/windowtest.cpp $(OBJS)
 VertexTest: tests/vertextest.cpp $(OBJS)
 	g++ -o build/VertexTest tests/vertextest.cpp $(OBJS) $(LDFLAGS)
 
-TESTS = WindowTest VertexTest
+VerticesTest: tests/vector_of_vertices_test.cpp $(OBJS)
+	g++ -o build/VerticesTest tests/vector_of_vertices_test.cpp $(OBJS) $(LDFLAGS)
+
+TESTS = WindowTest VertexTest VerticesTest
 
 tests: $(TESTS)
 	./build/WindowTest
 	./build/VertexTest
+	./build/VerticesTest
 
 # Main
 
