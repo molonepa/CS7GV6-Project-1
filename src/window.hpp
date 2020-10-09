@@ -13,7 +13,7 @@ public:
 	void clear(float r = 0.0f, float g = 0.0f, float b = 0.0f, float a = 1.0f);
 	void update();
 
-	bool isOpen() { return p_isOpen; }
+	inline bool isOpen() { return p_isOpen; }
 
 private:
 	GLFWwindow* p_window;
