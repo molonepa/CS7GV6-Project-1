@@ -33,3 +33,8 @@
 
 # Build directory contents
 build/*
+
+# Vim temp files
+*~
+*.swp
+*.swo
