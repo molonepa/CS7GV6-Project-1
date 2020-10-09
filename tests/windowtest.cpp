@@ -9,6 +9,10 @@
 #include <vector>
 
 int main() {
-	Window window(800, 600, "Hello");
+	Window window(1280, 720, "Hello");
+
+	while (window.isOpen()) {
+		window.update();
+	}
 	return 0;
 }

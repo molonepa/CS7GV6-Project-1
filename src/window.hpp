@@ -10,6 +10,12 @@ public:
 	Window(int width, int height, const std::string& title);
 	virtual ~Window();
 
+	void clear(float r = 0.0f, float g = 0.0f, float b = 0.0f, float a = 1.0f);
+	void update();
+
+	bool isOpen() { return p_isOpen; }
+
 private:
-	GLFWwindow* window;
+	GLFWwindow* p_window;
+	bool p_isOpen;
 };
