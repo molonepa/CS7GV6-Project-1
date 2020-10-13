@@ -32,7 +32,7 @@ GLuint compileShaderSource(const std::string& text, GLenum shaderType) {
 	GLuint shaderID = glCreateShader(shaderType);
 
 	if (shaderID == 0) {
-		throw std::runtime_error("ERROR: Failed to create shader")
+		throw std::runtime_error("ERROR: Failed to create shader");
 	}
 
 	const GLchar* shaderSource[1];
@@ -51,7 +51,7 @@ GLuint compileShaderSource(const std::string& text, GLenum shaderType) {
 
 std::string loadShaderSource(const std::string& filename) {
 	std::ifstream file;
-	file.open(filename.c_str());
+	file.open((filename).c_str());
 
 	std::string output;
 	std::string line;
@@ -63,8 +63,10 @@ std::string loadShaderSource(const std::string& filename) {
 		}
 	}
 	else {
-		throw std::runtime_error("ERROR: Failed to load shader source")
+		throw std::runtime_error("ERROR: Failed to load shader source");
 	}
+
+	return output;
 }
 
 Shader::Shader(const std::string& filename) {
@@ -93,6 +95,6 @@ Shader::~Shader() {
 	glDeleteProgram(p_shaderID);
 }
 
-Shader::bind() {
+void Shader::bind() {
 	glUseProgram(p_shaderID);
 }

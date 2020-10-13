@@ -6,14 +6,14 @@
 
 class Shader {
 public:
-	Shader(const std::string& filename = "shaders/default/deafult_shader");
+	Shader(const std::string& filename = "src/shaders/default");
 	virtual ~Shader();
 
 	void bind();
 
 private:
-	const unsigned int p_NUM_SHADERS = 2;
+	static const unsigned int p_NUM_SHADERS = 2;
 
 	GLuint p_shaderID;
-	GLuint p_shaderPrograms[NUM_SHADERS];
+	GLuint p_shaderPrograms[p_NUM_SHADERS];
 };
