@@ -20,6 +20,12 @@ Window::Window(int width, int height, const std::string& title) {
 	}
 	glfwMakeContextCurrent(p_window);
 
+	// initialise GLEW
+	glewExperimental = true;
+	if (glewInit() != GLEW_OK) {
+		throw std::runtime_error("ERROR: Failed to initialise GLEW");
+	}
+
 	p_isOpen = true;
 }
 
