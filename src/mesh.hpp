@@ -26,5 +26,5 @@ private:
 	GLuint p_VAO;
 	GLuint p_VBO[p_NUM_BUFFERS];
 
-	unsigned int p_drawCount
+	unsigned int p_drawCount;
 };

@@ -1,4 +1,4 @@
-OBJS = src/window.cpp src/shader.cpp
+OBJS = src/window.cpp src/shader.cpp src/mesh.cpp
 LDFLAGS = -lglfw -lGL -lGLEW
 
 # Tests
@@ -12,16 +12,20 @@ VertexTest: tests/vertextest.cpp $(OBJS)
 VerticesTest: tests/vector_of_vertices_test.cpp $(OBJS)
 	g++ -o build/VerticesTest tests/vector_of_vertices_test.cpp $(OBJS) $(LDFLAGS)
 
+MeshTest: tests/mesh_test.cpp $(OBJS)
+	g++ -o build/MeshTest tests/mesh_test.cpp $(OBJS) $(LDFLAGS)
+
 ShaderTest: tests/shader_test.cpp $(OBJS)
 	g++ -o build/ShaderTest tests/shader_test.cpp $(OBJS) $(LDFLAGS)
 
-TESTS = WindowTest VertexTest VerticesTest ShaderTest
+TESTS = WindowTest VertexTest VerticesTest ShaderTest MeshTest
 
 tests: $(TESTS)
 	./build/WindowTest
 	./build/VertexTest
 	./build/VerticesTest
 	./build/ShaderTest
+	./build/MeshTest
 
 # Main
 

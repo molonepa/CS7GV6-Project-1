@@ -1,8 +1,8 @@
-#include <mesh.hpp>
+#include "mesh.hpp"
 
 #include <vector>
 
-Model::Model(std::vector<Vertex> vertices, std::vector<int> indices) {
+Mesh::Mesh(std::vector<Vertex> vertices, std::vector<int> indices) {
 	std::vector<glm::vec3> positions;
 	std::vector<glm::vec2> uvs;
 	std::vector<glm::vec3> normals;
@@ -17,10 +17,10 @@ Model::Model(std::vector<Vertex> vertices, std::vector<int> indices) {
 }
 
 Mesh::~Mesh() {
-	glDeleteVertexArrays(1, &VAO);
+	glDeleteVertexArrays(1, &p_VAO);
 }
 
-void Mesh::render() {
+void Mesh::render(GLenum mode) {
 	glBindVertexArray(p_VAO);
 	glDrawElements(mode, p_drawCount, GL_UNSIGNED_INT, 0);
 	glBindVertexArray(0);
