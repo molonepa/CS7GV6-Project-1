@@ -98,3 +98,43 @@ Shader::~Shader() {
 void Shader::bind() {
 	glUseProgram(p_shaderID);
 }
+
+//void Shader::addInput(int pos, td::string attributeName) {
+	//glBindAttribLocation(p_shaderID, pos, attributeName.c_str());
+//}
+
+void Shader::updateUniform(std::string name, const bool u) {
+	glUniform1i(glGetUniformLocation(p_shaderID, name.c_str()), u);
+}
+
+void Shader::updateUniform(std::string name, const int u) {
+	glUniform1i(glGetUniformLocation(p_shaderID, name.c_str()), u);
+}
+
+void Shader::updateUniform(std::string name, const float u) {
+	glUniform1f(glGetUniformLocation(p_shaderID, name.c_str()), u);
+}
+
+void Shader::updateUniform(std::string name, const double u) {
+	glUniform1f(glGetUniformLocation(p_shaderID, name.c_str()), (float)u);
+}
+
+void Shader::updateUniform(std::string name, const glm::vec2 u) {
+	glUniform2fv(glGetUniformLocation(p_shaderID, name.c_str()), 1, &u[0]);
+}
+
+void Shader::updateUniform(std::string name, const glm::vec3 u) {
+	glUniform3fv(glGetUniformLocation(p_shaderID, name.c_str()), 1, &u[0]);
+}
+
+void Shader::updateUniform(std::string name, const glm::vec4 u) {
+	glUniform3fv(glGetUniformLocation(p_shaderID, name.c_str()), 1, &u[0]);
+}
+
+void Shader::updateUniform(std::string name, const glm::mat3 u) {
+	glUniformMatrix3fv(glGetUniformLocation(p_shaderID, name.c_str()), 1, GL_FALSE, &u[0][0]);
+}
+
+void Shader::updateUniform(std::string name, const glm::mat4 u) {
+	glUniformMatrix4fv(glGetUniformLocation(p_shaderID, name.c_str()), 1, GL_FALSE, &u[0][0]);
+}
