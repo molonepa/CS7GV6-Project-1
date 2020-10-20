@@ -26,6 +26,10 @@ Window::Window(int width, int height, const std::string& title) {
 		throw std::runtime_error("ERROR: Failed to initialise GLEW");
 	}
 
+	glEnable(GL_DEPTH_TEST);
+	glEnable(GL_CULL_FACE);
+	glCullFace(GL_BACK);
+
 	p_isOpen = true;
 }
 
@@ -41,9 +45,9 @@ void Window::clear(float r, float g, float b, float a) {
 void Window::update() {
 	glfwSetInputMode(p_window, GLFW_STICKY_KEYS, GL_TRUE);
 
-	while(glfwGetKey(p_window, GLFW_KEY_ESCAPE) != GLFW_PRESS && glfwWindowShouldClose(p_window) == 0) {
-		glfwSwapBuffers(p_window);
-		glfwPollEvents();
+	glfwSwapBuffers(p_window);
+	glfwPollEvents();
+	if (glfwGetKey(p_window, GLFW_KEY_ESCAPE) == GLFW_PRESS || glfwWindowShouldClose(p_window) != 0) {
+		p_isOpen = false;
 	}
-	p_isOpen = false;
 }
