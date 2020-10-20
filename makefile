@@ -1,4 +1,4 @@
-OBJS = src/window.cpp src/shader.cpp src/mesh.cpp src/texture.cpp
+OBJS = src/window.cpp src/shader.cpp src/mesh.cpp src/texture.cpp src/utils/obj_loader.cpp
 LDFLAGS = -lglfw -lGL -lGLEW
 
 # Tests
@@ -21,7 +21,10 @@ ShaderTest: tests/shader_test.cpp $(OBJS)
 TextureTest: tests/texture_test.cpp $(OBJS)
 	g++ -o build/TextureTest tests/texture_test.cpp $(OBJS) $(LDFLAGS)
 
-TESTS = WindowTest VertexTest VerticesTest ShaderTest MeshTest TextureTest
+OBJTextureTest: tests/obj_texture_test.cpp $(OBJS)
+	g++ -o build/OBJTextureTest tests/obj_texture_test.cpp $(OBJS) $(LDFLAGS)
+
+TESTS = WindowTest VertexTest VerticesTest ShaderTest MeshTest TextureTest OBJTextureTest
 
 tests: $(TESTS)
 	./build/WindowTest
@@ -30,6 +33,7 @@ tests: $(TESTS)
 	./build/ShaderTest
 	./build/MeshTest
 	./build/TextureTest
+	./build/OBJTextureTest
 
 # Main
 

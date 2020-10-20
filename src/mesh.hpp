@@ -1,6 +1,8 @@
 #pragma once
 
 #include "vertex.hpp"
+#include "utils/obj_loader.hpp"
+
 #include <GL/glew.h>
 
 #include <vector>
@@ -8,12 +10,13 @@
 class Mesh {
 public:
 	Mesh(std::vector<Vertex> vertices, std::vector<int> indices);
+	Mesh(const std::string& filename);
 	virtual ~Mesh();
 
-	void render(GLenum mode);
+	void render(GLenum mode = GL_TRIANGLES);
 
 private:
-	void initialiseMeshFromVectors(std::vector<glm::vec3> positions, std::vector<glm::vec2> uvs, std::vector<glm::vec3> normals, std::vector<int> indices);
+	void generateVertexBuffers(const IndexedModel& indexedModel);
 
 	enum {
 		p_POSITION_VB,
