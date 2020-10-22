@@ -9,31 +9,19 @@ WindowTest: tests/windowtest.cpp $(OBJS)
 VertexTest: tests/vertextest.cpp $(OBJS)
 	g++ -o build/VertexTest tests/vertextest.cpp $(OBJS) $(LDFLAGS)
 
-VerticesTest: tests/vector_of_vertices_test.cpp $(OBJS)
-	g++ -o build/VerticesTest tests/vector_of_vertices_test.cpp $(OBJS) $(LDFLAGS)
+ShaderTest: tests/shader_test.cpp $(OBJS)
+	g++ -o build/ShaderTest tests/shader_test.cpp $(OBJS) $(LDFLAGS)
 
 MeshTest: tests/mesh_test.cpp $(OBJS)
 	g++ -o build/MeshTest tests/mesh_test.cpp $(OBJS) $(LDFLAGS)
 
-ShaderTest: tests/shader_test.cpp $(OBJS)
-	g++ -o build/ShaderTest tests/shader_test.cpp $(OBJS) $(LDFLAGS)
-
-TextureTest: tests/texture_test.cpp $(OBJS)
-	g++ -o build/TextureTest tests/texture_test.cpp $(OBJS) $(LDFLAGS)
-
-OBJTextureTest: tests/obj_texture_test.cpp $(OBJS)
-	g++ -o build/OBJTextureTest tests/obj_texture_test.cpp $(OBJS) $(LDFLAGS)
-
-TESTS = WindowTest VertexTest VerticesTest ShaderTest MeshTest TextureTest OBJTextureTest
+TESTS = WindowTest VertexTest ShaderTest MeshTest
 
 tests: $(TESTS)
 	./build/WindowTest
 	./build/VertexTest
-	./build/VerticesTest
 	./build/ShaderTest
 	./build/MeshTest
-	./build/TextureTest
-	./build/OBJTextureTest
 
 # Main
 

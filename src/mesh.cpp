@@ -2,12 +2,12 @@
 
 #include <vector>
 
-Mesh::Mesh(std::vector<Vertex> vertices, std::vector<int> indices) {
+Mesh::Mesh(std::vector<Vertex> vertices, std::vector<unsigned int> indices) {
 	IndexedModel indexedModel;
 
 	for (std::size_t i = 0; i < vertices.size(); i++) {
 		indexedModel.positions.push_back(vertices[i].getPos());
-		indexedModel.uvs.push_back(vertices[i].getTexCoord());
+		indexedModel.uvs.push_back(vertices[i].getUV());
 		indexedModel.normals.push_back(vertices[i].getNormal());
 	}
 
