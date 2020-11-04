@@ -1,5 +1,5 @@
-OBJS = src/window.cpp src/shader.cpp src/mesh.cpp src/texture.cpp src/utils/obj_loader.cpp
-LDFLAGS = -lglfw -lGL -lGLEW
+OBJS = src/window_manager.cpp src/shader.cpp src/mesh.cpp src/texture.cpp src/utils/obj_loader.cpp src/player.cpp
+LDFLAGS = -lSDL2 -lGL -lGLEW
 
 # Tests
 
