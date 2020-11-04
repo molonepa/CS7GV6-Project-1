@@ -5,7 +5,7 @@
 
 class Texture {
 public:
-	Texture(const std::string& filename);
+	Texture(const std::string& filename = "data/textures/test_texture.png");
 	virtual ~Texture();
 
 	void bind(unsigned int unit);

@@ -10,7 +10,7 @@
 class Mesh {
 public:
 	Mesh(std::vector<Vertex> vertices, std::vector<unsigned int> indices);
-	Mesh(const std::string& filename);
+	Mesh(const std::string& filename = "data/models/default_cube.obj");
 	virtual ~Mesh();
 
 	void render(GLenum mode = GL_TRIANGLES);

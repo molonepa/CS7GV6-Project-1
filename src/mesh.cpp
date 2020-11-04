@@ -1,7 +1,5 @@
 #include "mesh.hpp"
 
-#include <vector>
-
 Mesh::Mesh(std::vector<Vertex> vertices, std::vector<unsigned int> indices) {
 	IndexedModel indexedModel;
 

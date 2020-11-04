@@ -5,7 +5,7 @@
 
 class Camera {
 public:
-	Camera(const glm::vec3& position, float fov, float aspect, float zNear, float zFar) {
+	Camera(const glm::vec3& position = glm::vec3(0.0f), float fov = 70.0f, float aspect = 1.77777f, float zNear = 0.1f, float zFar = 100.0f) {
 		this->p_position = position;
 		this->p_forward = glm::vec3(0.0f, 0.0f, -1.0f);
 		this->p_up = glm::vec3(0.0f, 1.0f, 0.0f);
@@ -15,6 +15,8 @@ public:
 	inline glm::mat4 getViewProjectionMatrix() const {
 		return p_perspective * glm::lookAt(p_position, p_position + p_forward, p_up);
 	}
+
+	inline glm::vec3 getForward() { return p_forward; }
 
 private:
 	glm::vec3 p_position;
