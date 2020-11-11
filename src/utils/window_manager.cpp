@@ -34,6 +34,9 @@ WindowManager::WindowManager(int width, int height, const std::string& title) {
 	glEnable(GL_CULL_FACE);
 	glCullFace(GL_BACK);
 
+	glEnable(GL_BLEND);
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
 	p_isOpen = true;
 }
 
