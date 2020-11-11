@@ -1,5 +1,5 @@
-#include "../src/window.hpp"
-#include "../src/shader.hpp"
+#include "../src/utils/window_manager.hpp"
+#include "../src/utils/shader.hpp"
 
 #include <glm/glm.hpp>
 
@@ -7,7 +7,7 @@
 #include <vector>
 
 int main() {
-	Window window(1280, 720, "Hello");
+	WindowManager window(1280, 720, "Hello");
 
 	Shader testShader("tests/test_shaders/shader_test");
 

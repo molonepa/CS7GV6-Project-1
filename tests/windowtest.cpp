@@ -1,8 +1,8 @@
-#include "../src/window.hpp"
+#include "../src/utils/window_manager.hpp"
 #include <cmath>
 
 int main() {
-	Window window(1280, 720, "Hello");
+	WindowManager window(1280, 720, "Hello");
 
 	float r, g, b = 0.0f;
 

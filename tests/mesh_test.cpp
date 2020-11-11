@@ -1,13 +1,13 @@
-#include "../src/window.hpp"
-#include "../src/mesh.hpp"
-#include "../src/shader.hpp"
+#include "../src/utils/window_manager.hpp"
+#include "../src/utils/mesh.hpp"
+#include "../src/utils/shader.hpp"
 #include "../src/utils/vertex.hpp"
 
 #include <stdio.h>
 #include <vector>
 
 int main() {
-	Window window(1280, 720, "Hello");
+	WindowManager window(1280, 720, "Hello");
 	Shader shader = Shader("tests/test_shaders/mesh_test");
 
 	std::vector<Vertex> vertices;
