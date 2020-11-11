@@ -1,7 +1,7 @@
 #pragma once
 
-#include "utils/vertex.hpp"
-#include "utils/obj_loader.hpp"
+#include "vertex.hpp"
+#include "obj_loader.hpp"
 
 #include <GL/glew.h>
 

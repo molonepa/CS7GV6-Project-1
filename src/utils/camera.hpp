@@ -5,9 +5,9 @@
 
 class Camera {
 public:
-	Camera(const glm::vec3& position = glm::vec3(0.0f), float fov = 70.0f, float aspect = 1.77777f, float zNear = 0.1f, float zFar = 100.0f) {
+	Camera(const glm::vec3& position = glm::vec3(0.0f), float fov = 70.0f, float aspect = 1.77777f, float zNear = 0.1f, float zFar = 1000.0f) {
 		this->p_position = position;
-		this->p_forward = glm::vec3(0.0f, 0.0f, -1.0f);
+		this->p_forward = glm::vec3(0.0f, -1.0f, -1.0f);
 		this->p_up = glm::vec3(0.0f, 1.0f, 0.0f);
 		this->p_perspective = glm::perspective(fov, aspect, zNear, zFar);
 	}
@@ -16,11 +16,26 @@ public:
 		return p_perspective * glm::lookAt(p_position, p_position + p_forward, p_up);
 	}
 
-	inline glm::vec3 getForward() { return p_forward; }
+	inline void moveForward() {
+		p_position += p_speed * p_forward;
+	}
+
+	inline void moveBack() {
+		p_position -= p_speed * p_forward;
+	}
+
+	inline void moveLeft() {
+		p_position -= glm::normalize(glm::cross(p_forward, p_up)) * p_speed;
+	}
+
+	inline void moveRight() {
+		p_position += glm::normalize(glm::cross(p_forward, p_up)) * p_speed;
+	}
 
 private:
 	glm::vec3 p_position;
 	glm::vec3 p_forward;
 	glm::vec3 p_up;
 	glm::mat4 p_perspective;
+	const float p_speed = 0.05f;
 };
