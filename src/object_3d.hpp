@@ -7,10 +7,6 @@
 
 class Object3D {
 public:
-	//Object3D(const Mesh& mesh, const Texture& texture, const Transform& transform, const Shader& shader) {
-		
-	//}
-
 	inline void draw(glm::mat4 viewProjectionMatrix) {
 		p_shader.bind();
 		p_shader.updateUniform("modelMatrix", p_transform.getModelMatrix());
