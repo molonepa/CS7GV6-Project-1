@@ -7,6 +7,7 @@
 #include <iostream>
 
 Texture::Texture(const std::string& filename) {
+	stbi_set_flip_vertically_on_load(true);
 	// load image data from file
 	int width, height, channels;
 	unsigned char* imageData = stbi_load(filename.c_str(), &width, &height, &channels, 4);
@@ -32,6 +33,7 @@ Texture::Texture(const std::string& filename) {
 }
 
 Texture::Texture(const std::vector<std::string>& filenames) {
+	stbi_set_flip_vertically_on_load(true);
 	// load image data from file
 	int width, height, channels;
 	unsigned char* imageData;
