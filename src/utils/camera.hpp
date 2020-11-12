@@ -8,7 +8,7 @@
 
 class Camera {
 public:
-	Camera(const glm::vec3& position = glm::vec3(0.0f), float fov = 70.0f, float aspect = 1.77777f, float zNear = 0.1f, float zFar = 1000.0f) {
+	Camera(const glm::vec3& position = glm::vec3(0.0f), float fov = 70.0f, float aspect = 1.77777f, float zNear = 0.1f, float zFar = 5000.0f) {
 		//this->p_position = position;
 		this->p_transform.setPosition(position);
 		this->p_forward = glm::vec3(0.0f, 0.0f, -1.0f);

@@ -38,11 +38,11 @@ private:
 
 	Mesh p_waterMesh = Mesh("data/models/sea_plane.obj");
 	Texture p_waterTexture = Texture("data/textures/water_texture.png");
-	Transform p_waterTransform = Transform(glm::vec3(0.0f, -55.0f, 0.0f), glm::vec3(0.0f), glm::vec3(5.0f, 5.0f, 5.0f));
+	Transform p_waterTransform = Transform(glm::vec3(0.0f, -55.0f, 0.0f), glm::vec3(0.0f), glm::vec3(1000.0f, 1.0f, 1000.0f));
 	Shader p_waterShader = Shader("src/shaders/water");
 
 	Mesh p_skyMesh = Mesh("data/models/skybox.obj");
-	Texture p_skyTexture = Texture({ "data/textures/skybox/right.jpg", "data/textures/skybox/left.jpg", "data/textures/skybox/top.jpg", "data/textures/skybox/bottom.jpg", "data/textures/skybox/front.jpg", "data/textures/skybox/back.jpg" });
-	Transform p_skyTransform = Transform(glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(0.0f), glm::vec3(500.0f, 500.0f, 500.0f));
+	Texture p_skyTexture = Texture({ "data/textures/skybox/cloudy_right.jpg", "data/textures/skybox/cloudy_left.jpg", "data/textures/skybox/cloudy_top.jpg", "data/textures/skybox/cloudy_bottom.jpg", "data/textures/skybox/cloudy_front.jpg", "data/textures/skybox/cloudy_back.jpg" });
+	Transform p_skyTransform = Transform(glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(0.0f), glm::vec3(1000.0f, 1000.0f, 1000.0f));
 	Shader p_skyShader = Shader("src/shaders/sky");
 };

@@ -9,7 +9,7 @@ int main() {
 
 	EventHandler input;
 	//Camera c(glm::vec3(0.0f, 500.0f, 500.0f));
-	Camera c(glm::vec3(0.0f, 5.0f, 0.0f));
+	Camera c(glm::vec3(0.0f, 60.0f, 0.0f));
 	input.addBinding(SDL_SCANCODE_UP, std::bind(&Camera::lookUp, &c));
 	input.addBinding(SDL_SCANCODE_DOWN, std::bind(&Camera::lookDown, &c));
 	input.addBinding(SDL_SCANCODE_LEFT, std::bind(&Camera::lookLeft, &c));
