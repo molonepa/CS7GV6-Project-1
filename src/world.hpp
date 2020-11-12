@@ -27,17 +27,19 @@ public:
 		p_waterShader.bind();
 		p_waterShader.updateUniform("modelMatrix", p_waterTransform.getModelMatrix());
 		p_waterShader.updateUniform("viewProjectionMatrix", viewProjectionMatrix);
-		p_waterTexture.bind(0);
+		p_waterDirtyTexture.bind(0);
+		p_waterCleanTexture.bind(1);
 		p_waterMesh.render();
 	}
 private:
 	Mesh p_terrainMesh = Mesh("data/models/ground_plane.obj");
-	Texture p_terrainTexture = Texture("data/textures/sea_floor.png");
+	Texture p_terrainTexture = Texture("data/textures/sand.png");
 	Transform p_terrainTransform = Transform(glm::vec3(0.0f, -50.0f, 0.0f), glm::vec3(0.0f), glm::vec3(5.0f, 5.0f, 5.0f));
 	Shader p_terrainShader;
 
 	Mesh p_waterMesh = Mesh("data/models/sea_plane.obj");
-	Texture p_waterTexture = Texture("data/textures/water_texture.png");
+	Texture p_waterDirtyTexture = Texture("data/textures/water_dirty.png");
+	Texture p_waterCleanTexture = Texture("data/textures/water_clean.png");
 	Transform p_waterTransform = Transform(glm::vec3(0.0f, -55.0f, 0.0f), glm::vec3(0.0f), glm::vec3(1000.0f, 1.0f, 1000.0f));
 	Shader p_waterShader = Shader("src/shaders/water");
 
