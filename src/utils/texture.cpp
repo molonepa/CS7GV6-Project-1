@@ -31,6 +31,36 @@ Texture::Texture(const std::string& filename) {
 	stbi_image_free(imageData);
 }
 
+Texture::Texture(const std::vector<std::string>& filenames) {
+	// load image data from file
+	int width, height, channels;
+	unsigned char* imageData;
+
+	glGenTextures(1, &p_texture);
+	glBindTexture(GL_TEXTURE_CUBE_MAP, p_texture);
+
+	for (unsigned int i = 0; i < filenames.size(); i++) {
+		imageData = stbi_load(filenames[i].c_str(), &width, &height, &channels, 4);
+		if (imageData == NULL) {
+			throw std::runtime_error("ERROR: Failed to load texture " + filenames[i]);
+		}
+		else {
+			// load image data into OpenGL cube map texture
+			glTexImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_X + i, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, imageData);
+			stbi_image_free(imageData);
+		}
+	}
+
+	// wrap textures
+	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_R, GL_CLAMP_TO_EDGE);
+
+	// use linear interpolation when minifying and magnifying
+	glTexParameterf(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+	glTexParameterf(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+}
+
 Texture::~Texture() {
 	glDeleteTextures(1, &p_texture);
 }

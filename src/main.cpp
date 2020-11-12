@@ -8,7 +8,8 @@ int main() {
 	WindowManager window(1600, 900, "Application");
 
 	EventHandler input;
-	Camera c(glm::vec3(0.0f, 500.0f, 500.0f));
+	//Camera c(glm::vec3(0.0f, 500.0f, 500.0f));
+	Camera c(glm::vec3(0.0f, 400.0f, 400.0f));
 
 	Player player;
 	input.addBinding(SDL_SCANCODE_W, std::bind(&Player::moveForward, &player));
