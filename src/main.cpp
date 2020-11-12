@@ -4,11 +4,16 @@
 #include "player.hpp"
 #include "world.hpp"
 
+#include "utils/clock.hpp"
+
+float countdown = 1000.0f; // 1000 = 10 seconds for some reason
+
 int main() {
 	WindowManager window(1600, 900, "Application");
+	Clock clock;
 
 	EventHandler input;
-	//Camera c(glm::vec3(0.0f, 500.0f, 500.0f));
+
 	Camera c(glm::vec3(0.0f, 60.0f, 0.0f));
 	input.addBinding(SDL_SCANCODE_UP, std::bind(&Camera::lookUp, &c));
 	input.addBinding(SDL_SCANCODE_DOWN, std::bind(&Camera::lookDown, &c));
@@ -23,7 +28,10 @@ int main() {
 
 	World world;
 
-	while (window.isOpen()) {
+	while (window.isOpen() && countdown > 0) {
+		float dt = clock.getDeltaTime();
+		//countdown = countdown - dt;
+
 		input.handle();
 
 		window.clear(0.3f, 0.5f, 0.8f, 1.0f);
@@ -32,6 +40,8 @@ int main() {
 		player.draw(c.getViewProjectionMatrix());
 
 		window.update();
+
+		clock.tick();
 	}
 
 	return 0;
