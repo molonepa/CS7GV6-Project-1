@@ -1,6 +1,7 @@
 #include "utils/window_manager.hpp"
 #include "utils/camera.hpp"
 #include "utils/event_handler.hpp"
+#include "utils/light.hpp"
 #include "player.hpp"
 #include "world.hpp"
 
@@ -14,11 +15,12 @@ int main() {
 
 	EventHandler input;
 
-	Camera c(glm::vec3(0.0f, 60.0f, 0.0f));
-	input.addBinding(SDL_SCANCODE_UP, std::bind(&Camera::lookUp, &c));
-	input.addBinding(SDL_SCANCODE_DOWN, std::bind(&Camera::lookDown, &c));
-	input.addBinding(SDL_SCANCODE_LEFT, std::bind(&Camera::lookLeft, &c));
-	input.addBinding(SDL_SCANCODE_RIGHT, std::bind(&Camera::lookRight, &c));
+	Light light = Light(glm::vec3(500.0f), glm::vec3(0.78f, 0.88f, 1.0f), 0.6f);
+	Camera camera(glm::vec3(0.0f, 50.0f, 0.0f));
+	input.addBinding(SDL_SCANCODE_UP, std::bind(&Camera::lookUp, &camera));
+	input.addBinding(SDL_SCANCODE_DOWN, std::bind(&Camera::lookDown, &camera));
+	input.addBinding(SDL_SCANCODE_LEFT, std::bind(&Camera::lookLeft, &camera));
+	input.addBinding(SDL_SCANCODE_RIGHT, std::bind(&Camera::lookRight, &camera));
 
 	Player player;
 	input.addBinding(SDL_SCANCODE_W, std::bind(&Player::moveForward, &player));
@@ -34,10 +36,10 @@ int main() {
 
 		input.handle();
 
-		window.clear(0.3f, 0.5f, 0.8f, 1.0f);
+		window.clear(0.25f, 0.6f, 1.0f, 1.0f);
 
-		world.draw(c.getViewProjectionMatrix());
-		player.draw(c.getViewProjectionMatrix());
+		world.draw(camera, light);
+		player.draw(camera, light);
 
 		window.update();
 

@@ -9,11 +9,17 @@
 
 class Player {
 public:
-	inline void draw(glm::mat4 viewProjectionMatrix) {
+	inline void draw(Camera camera, Light light) {
 		p_shader.bind();
-		p_shader.updateUniform("viewProjectionMatrix", viewProjectionMatrix);
-
+		p_shader.updateUniform("viewProjectionMatrix", camera.getViewProjectionMatrix());
+		p_shader.updateUniform("camera_position", camera.getPosition());
+		p_shader.updateUniform("light_colour", light.getColour());
+		p_shader.updateUniform("light_position", light.getPosition());
+		p_shader.updateUniform("ambient_strength", light.getStrength());
+		p_shader.updateUniform("specular_strength", 0.3f);
+		p_shader.updateUniform("reflection_strength", 0.3f);
 		p_shader.updateUniform("modelMatrix", p_boatTransform.getModelMatrix() * p_motorTransform.getModelMatrix());
+
 		p_motorTexture.bind(0);
 		p_motorMesh.render();
 
@@ -97,7 +103,7 @@ public:
 private:
 	Mesh p_boatMesh = Mesh("data/models/boat.obj");
 	Texture p_boatTexture = Texture("data/textures/boat.png");
-	Transform p_boatTransform;
+	Transform p_boatTransform = Transform(glm::vec3(0.0f, 0.0f, -200.0f));
 
 	Mesh p_motorMesh = Mesh("data/models/motor.obj");
 	Texture p_motorTexture = Texture("data/textures/motor.png");

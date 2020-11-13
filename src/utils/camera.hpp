@@ -21,6 +21,8 @@ public:
 		return p_perspective * glm::lookAt(position, position + p_forward, p_up);
 	}
 
+	inline glm::vec3 getPosition() { return p_transform.getPosition(); }
+
 	inline void lookUp() {
 		glm::vec3 right = glm::cross(p_forward, p_up);
 		glm::vec3 rotation = p_transform.getRotation();

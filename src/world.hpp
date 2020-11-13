@@ -7,26 +7,40 @@
 
 class World {
 public:
-	inline void draw(glm::mat4 viewProjectionMatrix) {
+	inline void draw(Camera camera, Light light) {
+		// render sky
 		// disable depth testing to draw skybox
 		glDisable(GL_DEPTH_TEST);
+
 		p_skyShader.bind();
 		p_skyShader.updateUniform("modelMatrix", p_skyTransform.getModelMatrix());
-		p_skyShader.updateUniform("viewProjectionMatrix", viewProjectionMatrix);
+		p_skyShader.updateUniform("viewProjectionMatrix", camera.getViewProjectionMatrix());
+
 		p_skyTexture.bind(0);
 		p_skyMesh.render();
+
 		// re-enable depth testing
 		glEnable(GL_DEPTH_TEST);
 
+		// render terrain
 		p_terrainShader.bind();
 		p_terrainShader.updateUniform("modelMatrix", p_terrainTransform.getModelMatrix());
-		p_terrainShader.updateUniform("viewProjectionMatrix", viewProjectionMatrix);
+		p_terrainShader.updateUniform("viewProjectionMatrix", camera.getViewProjectionMatrix());
+		p_terrainShader.updateUniform("camera_position", camera.getPosition());
+		p_terrainShader.updateUniform("light_colour", light.getColour());
+		p_terrainShader.updateUniform("light_position", light.getPosition());
+		p_terrainShader.updateUniform("ambient_strength", light.getStrength());
+		p_terrainShader.updateUniform("specular_strength", 0.3f);
+		p_terrainShader.updateUniform("reflection_strength", 0.3f);
+
 		p_terrainTexture.bind(0);
 		p_terrainMesh.render();
 
+		// render water
 		p_waterShader.bind();
 		p_waterShader.updateUniform("modelMatrix", p_waterTransform.getModelMatrix());
-		p_waterShader.updateUniform("viewProjectionMatrix", viewProjectionMatrix);
+		p_waterShader.updateUniform("viewProjectionMatrix", camera.getViewProjectionMatrix());
+
 		p_waterDirtyTexture.bind(0);
 		p_waterCleanTexture.bind(1);
 		p_waterMesh.render();
