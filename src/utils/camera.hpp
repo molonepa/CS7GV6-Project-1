@@ -21,35 +21,12 @@ public:
 		return p_perspective * glm::lookAt(position, position + p_forward, p_up);
 	}
 
+	inline void update(glm::vec3 position, glm::vec3 forward) {
+		p_transform.setPosition(position);
+		p_forward = forward;
+	}
+
 	inline glm::vec3 getPosition() { return p_transform.getPosition(); }
-
-	inline void lookUp() {
-		glm::vec3 right = glm::cross(p_forward, p_up);
-		glm::vec3 rotation = p_transform.getRotation();
-		rotation += right * p_turnSpeed;
-		p_transform.setRotation(rotation);
-
-		// update forward vector
-		p_forward = glm::normalize(glm::vec3(glm::inverse(p_transform.getModelMatrix())[2]));
-		p_forward.z *= -1;
-
-		// update up vector
-		p_up = glm::cross(right, p_forward);
-	}
-
-	inline void lookDown() {
-		glm::vec3 right = glm::cross(p_forward, p_up);
-		glm::vec3 rotation = p_transform.getRotation();
-		rotation -= right * p_turnSpeed;
-		p_transform.setRotation(rotation);
-
-		// update forward vector
-		p_forward = glm::normalize(glm::vec3(glm::inverse(p_transform.getModelMatrix())[2]));
-		p_forward.z *= -1;
-
-		// update up vector
-		p_up = glm::cross(right, p_forward);
-	}
 
 	inline void lookLeft() {
 		glm::vec3 rotation = p_transform.getRotation();

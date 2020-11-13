@@ -100,6 +100,15 @@ public:
 		p_forward.z *= -1;
 	}
 
+	inline glm::vec3 getCameraPosition() {
+		glm::vec3 position = p_boatTransform.getPosition();
+		position += 5.0f * p_up;
+		position -= 7.0f * p_forward;
+		return position;
+	}
+
+	inline glm::vec3 getForward() { return p_forward; }
+
 private:
 	Mesh p_boatMesh = Mesh("data/models/boat.obj");
 	Texture p_boatTexture = Texture("data/textures/boat.png");

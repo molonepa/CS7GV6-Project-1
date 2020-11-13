@@ -16,9 +16,8 @@ int main() {
 	EventHandler input;
 
 	Light light = Light(glm::vec3(500.0f), glm::vec3(0.78f, 0.88f, 1.0f), 0.6f);
-	Camera camera(glm::vec3(0.0f, 50.0f, 0.0f));
-	input.addBinding(SDL_SCANCODE_UP, std::bind(&Camera::lookUp, &camera));
-	input.addBinding(SDL_SCANCODE_DOWN, std::bind(&Camera::lookDown, &camera));
+
+	Camera camera(glm::vec3(0.0f, 0.0f, 0.0f));
 	input.addBinding(SDL_SCANCODE_LEFT, std::bind(&Camera::lookLeft, &camera));
 	input.addBinding(SDL_SCANCODE_RIGHT, std::bind(&Camera::lookRight, &camera));
 
@@ -40,6 +39,8 @@ int main() {
 
 		world.draw(camera, light);
 		player.draw(camera, light);
+
+		camera.update(player.getCameraPosition(), player.getForward());
 
 		window.update();
 
