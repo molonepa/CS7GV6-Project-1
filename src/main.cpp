@@ -4,6 +4,7 @@
 #include "utils/light.hpp"
 #include "player.hpp"
 #include "world.hpp"
+#include "rubbish.hpp"
 
 #include "utils/clock.hpp"
 
@@ -29,6 +30,8 @@ int main() {
 
 	World world;
 
+	Rubbish rubbish;
+
 	while (window.isOpen() && countdown > 0) {
 		float dt = clock.getDeltaTime();
 		//countdown = countdown - dt;
@@ -39,6 +42,7 @@ int main() {
 
 		world.draw(camera, light);
 		player.draw(camera, light);
+		rubbish.draw(camera, light);
 
 		camera.update(player.getCameraPosition(), player.getForward());
 

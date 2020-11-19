@@ -29,6 +29,12 @@ void Mesh::render(GLenum mode) {
 	glBindVertexArray(0);
 }
 
+//void Mesh::renderInstances(GLenum mode, int numInstances) {
+	//glBindVertexArray(p_VAO);
+	//glDrawElementsInstanced(mode, p_drawCount, GL_UNSIGNED_INT, numInstances);
+	//glBindVertexArray(0);
+//}
+
 void Mesh::generateVertexBuffers(const IndexedModel& indexedModel) {
 	p_drawCount = indexedModel.indices.size();
 

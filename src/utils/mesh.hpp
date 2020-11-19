@@ -15,6 +15,8 @@ public:
 
 	void render(GLenum mode = GL_TRIANGLES);
 
+	//void renderInstances(GLenum mode, int numInstances);
+
 private:
 	void generateVertexBuffers(const IndexedModel& indexedModel);
 
