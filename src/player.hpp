@@ -107,8 +107,6 @@ public:
 		return position;
 	}
 
-	inline glm::vec3 getForward() { return p_forward; }
-
 private:
 	Mesh p_boatMesh = Mesh("data/models/boat.obj");
 	Texture p_boatTexture = Texture("data/textures/boat.png");
@@ -126,6 +124,6 @@ private:
 	const float p_minTurnRotation = 0.0f;
 	const float p_maxTurnRotation = 1.0f;
 
-	const float p_moveSpeed = 1.0f;
+	const float p_moveSpeed = 5.0f;
 	const float p_turnSpeed = 0.025f;
 };

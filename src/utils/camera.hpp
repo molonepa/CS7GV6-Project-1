@@ -1,58 +1,60 @@
 #pragma once
 
-#include "transform.hpp"
-
 #include <glm/glm.hpp>
 #include <glm/gtx/transform.hpp>
 #include <iostream>
 
 class Camera {
 public:
-	Camera(const glm::vec3& position = glm::vec3(0.0f), float fov = 70.0f, float aspect = 1.77777f, float zNear = 0.1f, float zFar = 15000.0f) {
-		//this->p_position = position;
-		this->p_transform.setPosition(position);
-		this->p_forward = glm::vec3(0.0f, 0.0f, -1.0f);
-		this->p_up = glm::vec3(0.0f, 1.0f, 0.0f);
-		this->p_perspective = glm::perspective(fov, aspect, zNear, zFar);
+	Camera(const glm::vec3& position = glm::vec3(0.0f), float fov = 70.0f, float aspect = 1.77777f, float zNear = 0.1f, float zFar = 50000.0f, float sensitivity = 0.4f) {
+		p_position = position;
+		p_forward = glm::vec3(0.0f, 0.0f, -1.0f);
+		p_up = glm::vec3(0.0f, 1.0f, 0.0f);
+		p_perspective = glm::perspective(fov, aspect, zNear, zFar);
+		p_yaw = -90.0f;
+		p_pitch = 90.0f;
+		p_sensitivity = sensitivity;
 	}
 
 	inline glm::mat4 getViewProjectionMatrix() {
-		glm::vec3 position = p_transform.getPosition();
-		return p_perspective * glm::lookAt(position, position + p_forward, p_up);
+		return p_perspective * glm::lookAt(p_position, p_position + p_forward, p_up);
 	}
 
-	inline void update(glm::vec3 position, glm::vec3 forward) {
-		p_transform.setPosition(position);
-		p_forward = forward;
+	inline void update(glm::vec3 position) {
+		p_position = position;
 	}
 
-	inline glm::vec3 getPosition() { return p_transform.getPosition(); }
+	inline glm::vec3 getPosition() { return p_position; }
 
-	inline void lookLeft() {
-		glm::vec3 rotation = p_transform.getRotation();
-		rotation += p_up * p_turnSpeed;
-		p_transform.setRotation(rotation);
+	inline void turn(int deltaX, int deltaY) {
+		glm::vec3 front;
 
-		// update forward vector
-		p_forward = glm::normalize(glm::vec3(glm::inverse(p_transform.getModelMatrix())[2]));
-		p_forward.z *= -1;
-	}
+		p_yaw += deltaX * p_sensitivity;
+		p_pitch -= deltaY * p_sensitivity;
 
-	inline void lookRight() {
-		glm::vec3 rotation = p_transform.getRotation();
-		rotation -= p_up * p_turnSpeed;
-		p_transform.setRotation(rotation);
+		if (p_pitch > 89.0f) {
+			p_pitch = 89.0f;
+		}
+		if (p_pitch < -89.0f) {
+			p_pitch = -89.0f;
+		}
 
-		// update forward vector
-		p_forward = glm::normalize(glm::vec3(glm::inverse(p_transform.getModelMatrix())[2]));
-		p_forward.z *= -1;
+		front.x = std::cos(glm::radians(p_yaw)) * std::cos(glm::radians(p_pitch));
+		front.y = std::sin(glm::radians(p_pitch));
+		front.z = std::sin(glm::radians(p_yaw)) * std::cos(glm::radians(p_pitch));
+
+		p_forward = glm::normalize(front);
 	}
 
 private:
-	//glm::vec3 p_position;
-	Transform p_transform;
+	glm::vec3 p_position;
+
 	glm::vec3 p_forward;
 	glm::vec3 p_up;
+
 	glm::mat4 p_perspective;
-	const float p_turnSpeed = 0.05f;
+
+	float p_yaw;
+	float p_pitch;
+	float p_sensitivity;
 };

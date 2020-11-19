@@ -24,6 +24,10 @@ WindowManager::WindowManager(int width, int height, const std::string& title) {
 	// create OpenGL context for window
 	p_glContext = SDL_GL_CreateContext(p_window);
 
+	// hide mouse cursor
+	SDL_ShowCursor(SDL_DISABLE);
+	SDL_SetRelativeMouseMode(SDL_TRUE);
+
 	// initialise GLEW
 	glewExperimental = true;
 	if (glewInit() != GLEW_OK) {

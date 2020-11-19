@@ -19,14 +19,15 @@ int main() {
 	Light light = Light(glm::vec3(500.0f), glm::vec3(0.78f, 0.88f, 1.0f), 0.6f);
 
 	Camera camera(glm::vec3(0.0f, 0.0f, 0.0f));
-	input.addBinding(SDL_SCANCODE_LEFT, std::bind(&Camera::lookLeft, &camera));
-	input.addBinding(SDL_SCANCODE_RIGHT, std::bind(&Camera::lookRight, &camera));
+	//input.addBinding(SDL_SCANCODE_LEFT, std::bind(&Camera::lookLeft, &camera));
+	//input.addBinding(SDL_SCANCODE_RIGHT, std::bind(&Camera::lookRight, &camera));
+	input.addMouseBinding(std::bind(&Camera::turn, &camera, std::placeholders::_1, std::placeholders::_2));
 
 	Player player;
-	input.addBinding(SDL_SCANCODE_W, std::bind(&Player::moveForward, &player));
-	input.addBinding(SDL_SCANCODE_S, std::bind(&Player::moveBack, &player));
-	input.addBinding(SDL_SCANCODE_A, std::bind(&Player::turnLeft, &player));
-	input.addBinding(SDL_SCANCODE_D, std::bind(&Player::turnRight, &player));
+	input.addKeyBinding(SDL_SCANCODE_W, std::bind(&Player::moveForward, &player));
+	input.addKeyBinding(SDL_SCANCODE_S, std::bind(&Player::moveBack, &player));
+	input.addKeyBinding(SDL_SCANCODE_A, std::bind(&Player::turnLeft, &player));
+	input.addKeyBinding(SDL_SCANCODE_D, std::bind(&Player::turnRight, &player));
 
 	World world;
 
@@ -36,7 +37,8 @@ int main() {
 		float dt = clock.getDeltaTime();
 		//countdown = countdown - dt;
 
-		input.handle();
+		input.handleKeyboardInput();
+		input.handleMouseInput();
 
 		window.clear(0.25f, 0.6f, 1.0f, 1.0f);
 
@@ -44,7 +46,7 @@ int main() {
 		player.draw(camera, light);
 		rubbish.draw(camera, light);
 
-		camera.update(player.getCameraPosition(), player.getForward());
+		camera.update(player.getCameraPosition());
 
 		window.update();
 
