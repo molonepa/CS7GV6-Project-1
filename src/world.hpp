@@ -48,17 +48,17 @@ public:
 private:
 	Mesh p_terrainMesh = Mesh("data/models/ground_plane.obj");
 	Texture p_terrainTexture = Texture("data/textures/sand.png");
-	Transform p_terrainTransform = Transform(glm::vec3(0.0f, -50.0f, 0.0f), glm::vec3(0.0f), glm::vec3(5.0f, 5.0f, 5.0f));
+	Transform p_terrainTransform = Transform(glm::vec3(0.0f, -150.0f, 0.0f), glm::vec3(0.0f), glm::vec3(10.0f, 10.0f, 10.0f));
 	Shader p_terrainShader;
 
 	Mesh p_waterMesh = Mesh("data/models/sea_plane.obj");
 	Texture p_waterDirtyTexture = Texture("data/textures/water_dirty.png");
 	Texture p_waterCleanTexture = Texture("data/textures/water_clean.png");
-	Transform p_waterTransform = Transform(glm::vec3(0.0f, -55.0f, 0.0f), glm::vec3(0.0f), glm::vec3(1000.0f, 1.0f, 1000.0f));
+	Transform p_waterTransform = Transform(glm::vec3(0.0f, -55.0f, 0.0f), glm::vec3(0.0f), glm::vec3(10000.0f, 1.0f, 10000.0f));
 	Shader p_waterShader = Shader("src/shaders/water");
 
 	Mesh p_skyMesh = Mesh("data/models/skybox.obj");
-	Texture p_skyTexture = Texture({ "data/textures/skybox/cloudy_right.jpg", "data/textures/skybox/cloudy_left.jpg", "data/textures/skybox/cloudy_top.jpg", "data/textures/skybox/cloudy_bottom.jpg", "data/textures/skybox/cloudy_front.jpg", "data/textures/skybox/cloudy_back.jpg" });
-	Transform p_skyTransform = Transform(glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(0.0f), glm::vec3(1000.0f, 1000.0f, 1000.0f));
+	Texture p_skyTexture = Texture({ "data/textures/skybox/miramar_right.jpg", "data/textures/skybox/miramar_left.jpg", "data/textures/skybox/miramar_top.jpg", "data/textures/skybox/miramar_bottom.jpg", "data/textures/skybox/miramar_front.jpg", "data/textures/skybox/miramar_back.jpg" });
+	Transform p_skyTransform = Transform(glm::vec3(0.0f), glm::vec3(0.0f), glm::vec3(10000.0f, 10000.0f, 10000.0f));
 	Shader p_skyShader = Shader("src/shaders/sky");
 };
