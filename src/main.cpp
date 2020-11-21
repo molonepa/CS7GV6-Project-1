@@ -1,12 +1,12 @@
 #include "utils/window_manager.hpp"
 #include "utils/camera.hpp"
 #include "utils/event_handler.hpp"
+#include "utils/clock.hpp"
 #include "utils/light.hpp"
 #include "player.hpp"
 #include "world.hpp"
 #include "rubbish.hpp"
 
-#include "utils/clock.hpp"
 
 float countdown = 1000.0f; // 1000 = 10 seconds for some reason
 

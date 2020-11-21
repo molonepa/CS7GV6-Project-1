@@ -6,13 +6,13 @@
 
 class Camera {
 public:
-	Camera(const glm::vec3& position = glm::vec3(0.0f), float fov = 70.0f, float aspect = 1.77777f, float zNear = 0.1f, float zFar = 50000.0f, float sensitivity = 0.4f) {
+	Camera(const glm::vec3& position = glm::vec3(0.0f), float fov = 70.0f, float aspect = 1.77777f, float zNear = 0.1f, float zFar = 500000.0f, float sensitivity = 0.4f) {
 		p_position = position;
 		p_forward = glm::vec3(0.0f, 0.0f, -1.0f);
 		p_up = glm::vec3(0.0f, 1.0f, 0.0f);
 		p_perspective = glm::perspective(fov, aspect, zNear, zFar);
 		p_yaw = -90.0f;
-		p_pitch = 90.0f;
+		p_pitch = 0.0f;
 		p_sensitivity = sensitivity;
 	}
 
