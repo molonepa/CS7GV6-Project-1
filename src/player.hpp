@@ -107,6 +107,29 @@ public:
 		return position;
 	}
 
+	inline glm::vec3 getPosition() {
+		return p_boatTransform.getPosition();
+	}
+
+	inline void addToCapacity(float weight) {
+		if (p_currentCapacity < p_maxCapacity) {
+			std::cout << "added " << weight << " to capacity" << std::endl;
+			p_currentCapacity += weight;
+		}
+		else {
+			std::cout << "max capacity" << std::endl;
+		}
+	}
+
+	inline bool isOverCapacity() {
+		if (p_currentCapacity < p_maxCapacity) {
+			return false;
+		}
+		else {
+			return true;
+		}
+	}
+
 private:
 	Mesh p_boatMesh = Mesh("data/models/boat.obj");
 	Texture p_boatTexture = Texture("data/textures/boat.png");
@@ -124,6 +147,9 @@ private:
 	const float p_minTurnRotation = 0.0f;
 	const float p_maxTurnRotation = 1.0f;
 
-	const float p_moveSpeed = 5.0f;
-	const float p_turnSpeed = 0.025f;
+	const float p_moveSpeed = 2.50f;
+	const float p_turnSpeed = 0.01f;
+
+	float p_currentCapacity = 0.0f;
+	float p_maxCapacity = 25.0f;
 };

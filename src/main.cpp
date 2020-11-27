@@ -12,6 +12,7 @@ float countdown = 1000.0f; // 1000 = 10 seconds for some reason
 
 int main() {
 	WindowManager window(1600, 900, "Application");
+	//WindowManager window(800, 450, "Application");
 	Clock clock;
 
 	EventHandler input;
@@ -37,6 +38,13 @@ int main() {
 
 		input.handleKeyboardInput();
 		input.handleMouseInput();
+
+		if (!player.isOverCapacity()) {
+			float weightToAdd = rubbish.collect(player.getPosition());
+			if (weightToAdd > 0) {
+				player.addToCapacity(weightToAdd);
+			}
+		}
 
 		window.clear(0.25f, 0.6f, 1.0f, 1.0f);
 

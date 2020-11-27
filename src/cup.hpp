@@ -9,21 +9,43 @@
 class Cup {
 public:
 	inline void draw(Camera camera, Light light) {
-		p_shader.bind();
-		p_shader.updateUniform("viewProjectionMatrix", camera.getViewProjectionMatrix());
-		p_shader.updateUniform("camera_position", camera.getPosition());
-		p_shader.updateUniform("light_colour", light.getColour());
-		p_shader.updateUniform("light_position", light.getPosition());
-		p_shader.updateUniform("ambient_strength", light.getStrength());
-		p_shader.updateUniform("specular_strength", 0.8f);
-		p_shader.updateUniform("reflection_strength", 0.8f);
-		p_shader.updateUniform("modelMatrix", p_transform.getModelMatrix());
-		p_texture.bind(0);
-		p_mesh.render();
+		if (!p_isCollected) {
+			p_shader.bind();
+			p_shader.updateUniform("viewProjectionMatrix", camera.getViewProjectionMatrix());
+			p_shader.updateUniform("camera_position", camera.getPosition());
+			p_shader.updateUniform("light_colour", light.getColour());
+			p_shader.updateUniform("light_position", light.getPosition());
+			p_shader.updateUniform("ambient_strength", light.getStrength());
+			p_shader.updateUniform("specular_strength", 0.8f);
+			p_shader.updateUniform("reflection_strength", 0.8f);
+			p_shader.updateUniform("modelMatrix", p_transform.getModelMatrix());
+			p_texture.bind(0);
+			p_mesh.render();
+		}
 	}
+
+	inline glm::vec3 getPosition() {
+		return p_transform.getPosition();
+	}
+
+	inline float getWeight() {
+		return p_weight;
+	}
+
+	inline void collect() {
+		p_isCollected = true;
+	}
+
+	inline bool isCollected() {
+		return p_isCollected;
+	}
+
 private:
 	Mesh p_mesh = Mesh("data/models/rubbish/coffee_cup.obj");
 	Texture p_texture;
 	Transform p_transform = Transform(glm::vec3(random_float(-1000, 1000), -45.0f, random_float(-1000, 1000)));
 	Shader p_shader;
+
+	float p_weight = 1.0f;
+	bool p_isCollected = false;
 };
