@@ -26,6 +26,14 @@ public:
 		p_shader.updateUniform("modelMatrix", p_boatTransform.getModelMatrix());
 		p_boatTexture.bind(0);
 		p_boatMesh.render();
+
+		drawUI();
+	}
+
+	inline void drawUI() {
+		ImGui::Begin("Player");
+		ImGui::Text("Capacity: %0.1f/%d", p_currentCapacity, (int)p_maxCapacity);
+		ImGui::End();
 	}
 
 	inline void moveForward() {
@@ -113,11 +121,10 @@ public:
 
 	inline void addToCapacity(float weight) {
 		if (p_currentCapacity < p_maxCapacity) {
-			std::cout << "added " << weight << " to capacity" << std::endl;
 			p_currentCapacity += weight;
 		}
-		else {
-			std::cout << "max capacity" << std::endl;
+		if (p_currentCapacity > p_maxCapacity) {
+			p_currentCapacity = p_maxCapacity;
 		}
 	}
 

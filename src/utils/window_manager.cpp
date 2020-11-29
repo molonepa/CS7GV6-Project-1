@@ -41,10 +41,25 @@ WindowManager::WindowManager(int width, int height, const std::string& title) {
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
+	IMGUI_CHECKVERSION();
+	ImGui::CreateContext();
+	ImGuiIO& io = ImGui::GetIO();
+	(void)io;
+
+	ImGui::StyleColorsDark();
+
+	ImGui_ImplSDL2_InitForOpenGL(p_window, p_glContext);
+	ImGui_ImplOpenGL3_Init();
+
 	p_isOpen = true;
 }
 
 WindowManager::~WindowManager() {
+	// cleanup imgui
+	ImGui_ImplOpenGL3_Shutdown();
+	ImGui_ImplSDL2_Shutdown();
+	ImGui::DestroyContext();
+
 	// delete OpenGL context
 	SDL_GL_DeleteContext(p_glContext);
 
@@ -54,19 +69,26 @@ WindowManager::~WindowManager() {
 }
 
 void WindowManager::clear(float r, float g, float b, float a) {
+	ImGui_ImplOpenGL3_NewFrame();
+	ImGui_ImplSDL2_NewFrame(p_window);
+	ImGui::NewFrame();
+
 	glClearColor(r, g, b, a);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 }
 
 void WindowManager::update() {
-	// swap displaying and drawing buffers
-	SDL_GL_SwapWindow(p_window);
-
+	ImGui::Render();
+	ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
 	// update until quit
 	SDL_Event e;
 	while (SDL_PollEvent(&e)) {
+		ImGui_ImplSDL2_ProcessEvent(&e);
 		if (e.type == SDL_QUIT) {
 			p_isOpen = false;
 		}
 	}
+
+	// swap displaying and drawing buffers
+	SDL_GL_SwapWindow(p_window);
 }

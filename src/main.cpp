@@ -7,12 +7,11 @@
 #include "world.hpp"
 #include "rubbish.hpp"
 
-
 float countdown = 1000.0f; // 1000 = 10 seconds for some reason
 
 int main() {
 	WindowManager window(1600, 900, "Application");
-	//WindowManager window(800, 450, "Application");
+
 	Clock clock;
 
 	EventHandler input;
