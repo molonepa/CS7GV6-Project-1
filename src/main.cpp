@@ -30,7 +30,6 @@ int main() {
 	Rubbish rubbish;
 
 	while (window.isOpen() && clock.getElapsedTime() < 10000) {
-		std::cout << "elapsed: " << clock.getElapsedTime() << std::endl;
 		input.handleKeyboardInput();
 		input.handleMouseInput();
 
@@ -43,11 +42,16 @@ int main() {
 
 		window.clear(0.25f, 0.6f, 1.0f, 1.0f);
 
-		world.draw(camera, light);
+		world.draw(camera, light, clock.getElapsedTime());
 		player.draw(camera, light);
 		rubbish.draw(camera, light);
 
 		camera.update(player.getCameraPosition());
+
+		ImGui::Begin("Clock");
+		ImGui::Text("Delta: %0.2f", clock.getDeltaTime());
+		ImGui::Text("Elapsed: %0.2f", clock.getElapsedTime());
+		ImGui::End();
 
 		window.update();
 

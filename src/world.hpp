@@ -7,7 +7,7 @@
 
 class World {
 public:
-	inline void draw(Camera camera, Light light) {
+	inline void draw(Camera camera, Light light, const float& time) {
 		// render sky
 		// disable depth testing to draw skybox
 		glDisable(GL_DEPTH_TEST);
@@ -40,9 +40,9 @@ public:
 		p_waterShader.bind();
 		p_waterShader.updateUniform("modelMatrix", p_waterTransform.getModelMatrix());
 		p_waterShader.updateUniform("viewProjectionMatrix", camera.getViewProjectionMatrix());
+		p_waterShader.updateUniform("time", time);
 
-		p_waterDirtyTexture.bind(0);
-		p_waterCleanTexture.bind(1);
+		p_waterTexture.bind(0);
 		p_waterMesh.render();
 	}
 private:
@@ -51,10 +51,9 @@ private:
 	Transform p_terrainTransform = Transform(glm::vec3(0.0f, -150.0f, 0.0f), glm::vec3(0.0f), glm::vec3(10.0f, 10.0f, 10.0f));
 	Shader p_terrainShader;
 
-	Mesh p_waterMesh = Mesh("data/models/sea_plane.obj");
-	Texture p_waterDirtyTexture = Texture("data/textures/water_dirty.png");
-	Texture p_waterCleanTexture = Texture("data/textures/water_clean.png");
-	Transform p_waterTransform = Transform(glm::vec3(0.0f, -55.0f, 0.0f), glm::vec3(0.0f), glm::vec3(10000.0f, 1.0f, 10000.0f));
+	Mesh p_waterMesh = Mesh("data/models/water.obj");
+	Texture p_waterTexture = Texture("data/textures/water_clean.png");
+	Transform p_waterTransform = Transform(glm::vec3(0.0f, -55.0f, 0.0f), glm::vec3(0.0f), glm::vec3(100.0f, 1.0f, 100.0f));
 	Shader p_waterShader = Shader("src/shaders/water");
 
 	Mesh p_skyMesh = Mesh("data/models/skybox.obj");

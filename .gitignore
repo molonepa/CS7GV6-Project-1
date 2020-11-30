@@ -36,6 +36,9 @@ build/*
 #external directory contents
 external/*
 
+#assets
+data/*
+
 # Vim temp files
 *~
 *.swp
