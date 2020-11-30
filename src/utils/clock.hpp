@@ -14,12 +14,15 @@ public:
 			p_deltaTime = TARGET_DELTA_TIME;
 		}
 
+		p_elapsedTime += p_deltaTime;
 		p_lastTime = SDL_GetTicks();
 	}
 
 	inline float getDeltaTime() { return p_deltaTime; }
+	inline float getElapsedTime() { return p_elapsedTime; }
 
 private:
 	float p_deltaTime;
 	float p_lastTime;
+	float p_elapsedTime = 0.0f;
 };

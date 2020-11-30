@@ -7,8 +7,6 @@
 #include "world.hpp"
 #include "rubbish.hpp"
 
-float countdown = 1000.0f; // 1000 = 10 seconds for some reason
-
 int main() {
 	WindowManager window(1600, 900, "Application");
 
@@ -31,10 +29,8 @@ int main() {
 
 	Rubbish rubbish;
 
-	while (window.isOpen() && countdown > 0) {
-		float dt = clock.getDeltaTime();
-		//countdown = countdown - dt;
-
+	while (window.isOpen() && clock.getElapsedTime() < 10000) {
+		std::cout << "elapsed: " << clock.getElapsedTime() << std::endl;
 		input.handleKeyboardInput();
 		input.handleMouseInput();
 
