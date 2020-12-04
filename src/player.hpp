@@ -140,7 +140,7 @@ public:
 private:
 	Mesh p_boatMesh = Mesh("data/models/boat.obj");
 	Texture p_boatTexture = Texture("data/textures/boat.png");
-	Transform p_boatTransform = Transform(glm::vec3(0.0f, 0.0f, -200.0f));
+	Transform p_boatTransform = Transform(glm::vec3(0.0f, 0.0f, -1250.0f));
 
 	Mesh p_motorMesh = Mesh("data/models/motor.obj");
 	Texture p_motorTexture = Texture("data/textures/motor.png");

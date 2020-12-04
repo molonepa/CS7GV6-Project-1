@@ -54,7 +54,7 @@ public:
 private:
 	Mesh p_terrainMesh = Mesh("data/models/ground_plane.obj");
 	Texture p_terrainTexture = Texture("data/textures/sand.png");
-	Transform p_terrainTransform = Transform(glm::vec3(0.0f, -150.0f, 0.0f), glm::vec3(0.0f), glm::vec3(10.0f, 10.0f, 10.0f));
+	Transform p_terrainTransform = Transform(glm::vec3(0.0f, -150.0f, 0.0f), glm::vec3(0.0f), glm::vec3(50.0f, 20.0f, 50.0f));
 	Shader p_terrainShader;
 
 	Mesh p_waterMesh = Mesh("data/models/water.obj");
@@ -64,6 +64,6 @@ private:
 
 	Mesh p_skyMesh = Mesh("data/models/skybox.obj");
 	Texture p_skyTexture = Texture({ "data/textures/skybox/miramar_right.jpg", "data/textures/skybox/miramar_left.jpg", "data/textures/skybox/miramar_top.jpg", "data/textures/skybox/miramar_bottom.jpg", "data/textures/skybox/miramar_front.jpg", "data/textures/skybox/miramar_back.jpg" });
-	Transform p_skyTransform = Transform(glm::vec3(0.0f), glm::vec3(0.0f), glm::vec3(100000.0f, 100000.0f, 100000.0f));
+	Transform p_skyTransform = Transform(glm::vec3(0.0f, 50000.0f, 0.0f), glm::vec3(0.0f), glm::vec3(100000.0f, 100000.0f, 100000.0f));
 	Shader p_skyShader = Shader("src/shaders/sky");
 };
