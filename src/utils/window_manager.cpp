@@ -34,6 +34,8 @@ WindowManager::WindowManager(int width, int height, const std::string& title) {
 		throw std::runtime_error("ERROR: Failed to initialise GLEW");
 	}
 
+	glEnable(GL_FRAMEBUFFER_SRGB);
+
 	glEnable(GL_DEPTH_TEST);
 	glEnable(GL_CULL_FACE);
 	glCullFace(GL_BACK);
