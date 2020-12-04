@@ -40,6 +40,12 @@ public:
 		p_waterShader.bind();
 		p_waterShader.updateUniform("modelMatrix", p_waterTransform.getModelMatrix());
 		p_waterShader.updateUniform("viewProjectionMatrix", camera.getViewProjectionMatrix());
+		p_waterShader.updateUniform("camera_position", camera.getPosition());
+		p_waterShader.updateUniform("light_colour", light.getColour());
+		p_waterShader.updateUniform("light_position", light.getPosition());
+		p_waterShader.updateUniform("ambient_strength", light.getStrength());
+		p_waterShader.updateUniform("specular_strength", 0.7f);
+		p_waterShader.updateUniform("reflection_strength", 0.7f);
 		p_waterShader.updateUniform("time", time);
 
 		p_waterTexture.bind(0);
@@ -53,7 +59,7 @@ private:
 
 	Mesh p_waterMesh = Mesh("data/models/water.obj");
 	Texture p_waterTexture = Texture("data/textures/water_clean.png");
-	Transform p_waterTransform = Transform(glm::vec3(0.0f, -55.0f, 0.0f), glm::vec3(0.0f), glm::vec3(100.0f, 1.0f, 100.0f));
+	Transform p_waterTransform = Transform(glm::vec3(0.0f, -55.0f, 0.0f), glm::vec3(0.0f), glm::vec3(10.0f, 1.0f, 10.0f));
 	Shader p_waterShader = Shader("src/shaders/water");
 
 	Mesh p_skyMesh = Mesh("data/models/skybox.obj");
