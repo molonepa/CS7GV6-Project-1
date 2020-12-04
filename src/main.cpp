@@ -43,10 +43,10 @@ int main() {
 		window.clear(0.25f, 0.6f, 1.0f, 1.0f);
 
 		world.draw(camera, light, clock.getElapsedTime());
+		camera.update(player.getCameraPosition());
 		player.draw(camera, light);
 		rubbish.draw(camera, light);
 
-		camera.update(player.getCameraPosition());
 
 		ImGui::Begin("Clock");
 		ImGui::Text("Delta: %0.2f", clock.getDeltaTime());

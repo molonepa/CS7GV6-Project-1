@@ -10,6 +10,8 @@
 class Player {
 public:
 	inline void draw(Camera camera, Light light) {
+		updateMovement();
+
 		p_shader.bind();
 		p_shader.updateUniform("viewProjectionMatrix", camera.getViewProjectionMatrix());
 		p_shader.updateUniform("camera_position", camera.getPosition());
@@ -36,7 +38,24 @@ public:
 		ImGui::End();
 	}
 
+	inline void updateMovement() {
+		if (!p_isMoving) {
+			// decelerate due to friction
+			p_currentSpeed -= 0.5 * p_acceleration;
+			if (p_currentSpeed < 0.0f) {
+				p_currentSpeed = 0.0f;
+			}
+		}
+
+		glm::vec3 position = p_boatTransform.getPosition();
+		position += p_currentSpeed * p_forward;
+		p_boatTransform.setPosition(position);
+
+		p_isMoving = false;
+	}
+
 	inline void moveForward() {
+		p_isMoving = true;
 		// rotate motor back to neutral position
 		glm::vec3 rotation = p_motorTransform.getRotation();
 		if (rotation.y > p_minTurnRotation) {
@@ -47,13 +66,14 @@ public:
 		}
 		p_motorTransform.setRotation(rotation);
 
-		// update position at full speed
-		glm::vec3 position = p_boatTransform.getPosition();
-		   position += p_moveSpeed * p_forward;
-		p_boatTransform.setPosition(position);
+		p_currentSpeed += p_acceleration;
+		if (p_currentSpeed > p_maxForwardsSpeed) {
+			p_currentSpeed = p_maxForwardsSpeed;
+		}
 	}
 
 	inline void moveBack() {
+		p_isMoving = true;
 		// rotate motor back to neutral position
 		glm::vec3 rotation = p_motorTransform.getRotation();
 		if (rotation.y > p_minTurnRotation) {
@@ -64,10 +84,10 @@ public:
 		}
 		p_motorTransform.setRotation(rotation);
 
-		// update position at 0.25 * speed
-		glm::vec3 position = p_boatTransform.getPosition();
-		   position -= (0.25f * p_moveSpeed) * p_forward;
-		p_boatTransform.setPosition(position);
+		p_currentSpeed -= p_acceleration;
+		if (p_currentSpeed < p_maxBackwardsSpeed) {
+			p_currentSpeed = p_maxBackwardsSpeed;
+		}
 	}
 
 	inline void turnLeft() {
@@ -154,8 +174,12 @@ private:
 	const float p_minTurnRotation = 0.0f;
 	const float p_maxTurnRotation = 1.0f;
 
-	const float p_moveSpeed = 2.50f;
-	const float p_turnSpeed = 0.01f;
+	const float p_acceleration = 0.1f;
+	float p_currentSpeed = 0.0f;
+	const float p_maxForwardsSpeed = 7.50f;
+	const float p_maxBackwardsSpeed = -5.0f;
+	const float p_turnSpeed = 0.02f;
+	bool p_isMoving = false;
 
 	float p_currentCapacity = 0.0f;
 	float p_maxCapacity = 25.0f;
