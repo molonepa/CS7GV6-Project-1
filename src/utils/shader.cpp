@@ -99,10 +99,6 @@ void Shader::bind() {
 	glUseProgram(p_shaderID);
 }
 
-//void Shader::addInput(int pos, td::string attributeName) {
-	//glBindAttribLocation(p_shaderID, pos, attributeName.c_str());
-//}
-
 void Shader::updateUniform(std::string name, const bool u) {
 	glUniform1i(glGetUniformLocation(p_shaderID, name.c_str()), u);
 }
