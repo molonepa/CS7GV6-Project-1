@@ -14,7 +14,7 @@ int main() {
 
 	EventHandler input;
 
-	Light light = Light(glm::vec3(500.0f), glm::vec3(0.78f, 0.88f, 1.0f), 0.6f);
+	Light light = Light(glm::vec3(500.0f), glm::vec3(0.78f, 0.88f, 1.0f), 0.5f);
 
 	Camera camera(glm::vec3(0.0f, 0.0f, 0.0f));
 	input.addMouseBinding(std::bind(&Camera::turn, &camera, std::placeholders::_1, std::placeholders::_2));
