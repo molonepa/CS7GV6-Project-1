@@ -2,9 +2,11 @@
 
 in vec3 frag_position;
 in vec2 frag_uv;
+in vec3 frag_normal;
 
-uniform sampler2D diffuse;
-uniform sampler2D bump;
+uniform sampler2D diffuse_map;
+uniform sampler2D normal_map;
+uniform sampler2D specular_map;
 
 uniform vec3 light_colour;
 uniform vec3 light_position;
@@ -23,7 +25,7 @@ void main() {
 	uv.x += time * 0.005;
 	uv.y += time * 0.005;
 
-	vec3 normal = texture2D(bump, uv).rgb;
+	vec3 normal = frag_normal + texture2D(normal_map, uv).rgb;
 	normal = normalize(normal * 2.0 - 1.0);
 
 	vec3 result = vec3(0.0);
@@ -32,11 +34,11 @@ void main() {
 	vec3 view_direction = normalize(camera_position - frag_position);
 	vec3 halfway_direction = normalize(light_direction + view_direction);
 
-	vec3 ambient_component = ambient_strength * light_colour;
-	vec3 diffuse_component = max(dot(normalize(normal), light_direction), 0.0) * light_colour;
-	vec3 specular_component = specular_strength * pow(max(dot(normal, halfway_direction), 0.0), reflection_strength) * light_colour;
+	vec3 ambient_component = ambient_strength * vec3(texture2D(diffuse_map, uv));
+	vec3 diffuse_component = max(dot(normalize(normal), light_direction), 0.0) * vec3(texture2D(diffuse_map, uv));
+	vec3 specular_component = specular_strength * pow(max(dot(normal, halfway_direction), 0.0), reflection_strength) * vec3(texture2D(specular_map, uv));
 
-	result = ambient_component + diffuse_component + specular_component;
+	result = light_colour * (ambient_component + diffuse_component + specular_component);
 
-	frag_colour = vec4(result, 0.8) * texture2D(diffuse, uv);
+	frag_colour = vec4(result, 0.8);
 }

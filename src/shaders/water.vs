@@ -12,6 +12,7 @@ uniform float time;
 
 out vec3 frag_position;
 out vec2 frag_uv;
+out vec3 frag_normal;
 
 // displace using wave equation
 // y(x, time) = A * sin(2*Pi/wavelength * (x-f*time) + phase)
@@ -35,4 +36,5 @@ void main() {
 
 	frag_position = (modelMatrix * vec4(vp, 1.0f)).xyz;
 	frag_uv = vert_uv;
+	frag_normal = vert_normal;
 }
