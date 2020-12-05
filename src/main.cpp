@@ -16,8 +16,9 @@ int main() {
 
 	Light light = Light(glm::vec3(500.0f), glm::vec3(0.78f, 0.88f, 1.0f), 0.5f);
 
-	Camera camera(glm::vec3(0.0f, 0.0f, 0.0f));
+	Camera camera;
 	input.addMouseBinding(std::bind(&Camera::turn, &camera, std::placeholders::_1, std::placeholders::_2));
+	input.addKeyBinding(SDL_SCANCODE_M, std::bind(&Camera::activateMapMode, &camera));
 
 	Player player;
 	input.addKeyBinding(SDL_SCANCODE_W, std::bind(&Player::moveForward, &player));
@@ -43,9 +44,10 @@ int main() {
 		window.clear(0.25f, 0.6f, 1.0f, 1.0f);
 
 		world.draw(camera, light, clock.getElapsedTime());
-		camera.update(player.getCameraPosition());
 		player.draw(camera, light);
 		rubbish.draw(camera, light);
+
+		camera.update(player.getCameraPosition());
 
 
 		ImGui::Begin("Clock");
