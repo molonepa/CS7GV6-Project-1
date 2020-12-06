@@ -42,7 +42,7 @@ public:
 
 private:
 	Mesh p_mesh = Mesh("data/models/rubbish/can.obj");
-	Texture p_texture;
+	Texture p_texture = Texture("data/textures/can.png");
 	Transform p_transform = Transform(glm::vec3(random_float(-3000, 3000), -45.0f, random_float(-3000, 3000)));
 	Shader p_shader;
 
