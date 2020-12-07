@@ -39,6 +39,9 @@ external/*
 #assets
 data/*
 
+# imgui
+*.ini
+
 # Vim temp files
 *~
 *.swp

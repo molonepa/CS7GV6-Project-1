@@ -3,6 +3,8 @@
 #include <string>
 #include <vector>
 #include <GL/glew.h>
+#include <cassert>
+#include <iostream>
 
 class Texture {
 public:

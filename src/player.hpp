@@ -2,9 +2,9 @@
 
 #define PI 3.1415926353
 
-#include "utils/mesh.hpp"
-#include "utils/texture.hpp"
-#include "utils/shader.hpp"
+#include "opengl/mesh.hpp"
+#include "opengl/texture.hpp"
+#include "opengl/shader.hpp"
 #include "utils/transform.hpp"
 
 #include <glm/gtx/rotate_vector.hpp>

@@ -1,8 +1,8 @@
 #pragma once
 
-#include "utils/mesh.hpp"
-#include "utils/texture.hpp"
-#include "utils/shader.hpp"
+#include "opengl/mesh.hpp"
+#include "opengl/texture.hpp"
+#include "opengl/shader.hpp"
 #include "utils/transform.hpp"
 #include "utils/random_float.hpp"
 

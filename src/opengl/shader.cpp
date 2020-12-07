@@ -1,9 +1,5 @@
 #include "shader.hpp"
 
-#include <iostream>
-#include <fstream>
-#include <stdexcept>
-
 void checkShaderError(GLuint shaderID, GLuint flag, bool isProgram, const std::string& errorMessage) {
 	GLint success = 0;
 	GLchar error[1024] = {0};

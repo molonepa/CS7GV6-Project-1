@@ -1,5 +1,4 @@
 #include "obj_loader.hpp"
-
 #include <fstream>
 #include <iostream>
 #include <algorithm>
