@@ -69,7 +69,7 @@ private:
 
 	Mesh p_waterMesh = Mesh("data/models/water.obj");
 	Texture p_waterDiffuseMap = Texture("data/textures/water_clean.png");
-	Texture p_waterNormalMap = Texture("data/textures/water_mormal_map.png");
+	Texture p_waterNormalMap = Texture("data/textures/water_normal_map.png");
 	Texture p_waterSpecularMap = Texture("data/textures/water_specular_map.png");
 	Transform p_waterTransform = Transform(glm::vec3(0.0f, -55.0f, 0.0f), glm::vec3(0.0f), glm::vec3(10.0f, 1.0f, 10.0f));
 	Shader p_waterShader = Shader("src/shaders/water");
