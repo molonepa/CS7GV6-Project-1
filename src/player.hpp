@@ -1,5 +1,7 @@
 #pragma once
 
+#define PI 3.1415926353
+
 #include "utils/mesh.hpp"
 #include "utils/texture.hpp"
 #include "utils/shader.hpp"
@@ -9,8 +11,8 @@
 
 class Player {
 public:
-	inline void draw(Camera camera, Light light) {
-		updateMovement();
+	inline void draw(Camera camera, Light light, const float& elapsedTime) {
+		updateMovement(elapsedTime);
 
 		p_shader.bind();
 		p_shader.updateUniform("viewProjectionMatrix", camera.getViewProjectionMatrix());
@@ -28,17 +30,9 @@ public:
 		p_shader.updateUniform("modelMatrix", p_boatTransform.getModelMatrix());
 		p_boatTexture.bind(0);
 		p_boatMesh.render();
-
-		drawUI();
 	}
 
-	inline void drawUI() {
-		ImGui::Begin("Player");
-		ImGui::Text("Capacity: %0.1f/%d", p_currentCapacity, (int)p_maxCapacity);
-		ImGui::End();
-	}
-
-	inline void updateMovement() {
+	inline void updateMovement(const float& time) {
 		if (!p_isMoving) {
 			// decelerate due to friction
 			p_currentSpeed -= 0.5 * p_acceleration;
@@ -49,6 +43,7 @@ public:
 
 		glm::vec3 position = p_boatTransform.getPosition();
 		position += p_currentSpeed * p_forward;
+		position.y += 0.25 * sin(0.1 * time);
 		p_boatTransform.setPosition(position);
 
 		p_isMoving = false;
@@ -146,6 +141,14 @@ public:
 		if (p_currentCapacity > p_maxCapacity) {
 			p_currentCapacity = p_maxCapacity;
 		}
+	}
+
+	inline float getCurrentCapacity() {
+		return p_currentCapacity;
+	}
+
+	inline float getMaxCapacity() {
+		return p_maxCapacity;
 	}
 
 	inline bool isOverCapacity() {
