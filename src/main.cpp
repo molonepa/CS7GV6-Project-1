@@ -31,6 +31,7 @@ int main() {
 	input.addKeyBinding(SDL_SCANCODE_A, std::bind(&Player::turnLeft, &player));
 	input.addKeyBinding(SDL_SCANCODE_D, std::bind(&Player::turnRight, &player));
 	int maxCapacity = (int)player.getMaxCapacity();
+	float totalCollectedRubbish = 0.0f;
 
 	World world;
 
@@ -73,49 +74,33 @@ int main() {
 		clock.tick();
 	}
 
-	bool playerHasWon = true;
-
-	if (playerHasWon) {
+	std:: string message;
+	if (totalCollectedRubbish >= 100.0f) {
 		world.changeSkyTexture();
-		// end screen
-		while (window.isOpen()) {
-			input.handleMouseInput();
-
-			// render graphics
-			window.clear(0.25f, 0.6f, 1.0f, 1.0f);
-			world.draw(endCamera, light, clock.getElapsedTime());
-
-			// render UI
-			ImGui::Begin("Information", NULL, ImGuiWindowFlags_AlwaysAutoResize);
-			ImGui::PushItemWidth(500);
-			ImGui::Text("Congratulations!\nYou collected %0.1fkg of rubbish and restored wildilfe to the ocean!", 10.0f);
-			ImGui::End();
-
-			window.update();
-
-			// update clock
-			clock.tick();
-		}
+		message = "Congratulations, you won!";
 	}
 	else {
-		while (window.isOpen()) {
-			input.handleMouseInput();
+		message = "Sorry, you lost!";
+	}
 
-			// render graphics
-			window.clear(0.25f, 0.6f, 1.0f, 1.0f);
-			world.draw(endCamera, light, clock.getElapsedTime());
+	while (window.isOpen()) {
+		input.handleMouseInput();
 
-			// render UI
-			ImGui::Begin("Information", NULL, ImGuiWindowFlags_AlwaysAutoResize);
-			ImGui::PushItemWidth(500);
-			ImGui::Text("You lost!\nYou only collected %0.1fkg of rubbish, not enough restore the habitat.", 10.0f);
-			ImGui::End();
+		// render graphics
+		window.clear(0.25f, 0.6f, 1.0f, 1.0f);
+		world.draw(endCamera, light, clock.getElapsedTime());
 
-			window.update();
+		// render UI
+		ImGui::Begin("Game Over", NULL, ImGuiWindowFlags_AlwaysAutoResize);
+		ImGui::PushItemWidth(500);
+		ImGui::Text(message.c_str());
+		ImGui::Text("You collected %0.1fkg of rubbish in total", totalCollectedRubbish);
+		ImGui::End();
 
-			// update clock
-			clock.tick();
-		}
+		window.update();
+
+		// update clock
+		clock.tick();
 	}
 
 	return 0;
