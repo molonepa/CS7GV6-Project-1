@@ -44,7 +44,7 @@ public:
 		p_waterShader.updateUniform("light_colour", light.getColour());
 		p_waterShader.updateUniform("light_position", light.getPosition());
 		p_waterShader.updateUniform("ambient_strength", light.getStrength());
-		p_waterShader.updateUniform("specular_strength", 0.5f);
+		p_waterShader.updateUniform("specular_strength", 1.0f);
 		p_waterShader.updateUniform("reflection_strength", 1.5f);
 		p_waterShader.updateUniform("time", time);
 
