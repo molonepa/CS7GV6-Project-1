@@ -24,6 +24,16 @@ public:
 		}
 	}
 
+	inline void update(const float& time) {
+		glm::vec3 pos = p_transform.getPosition();
+		pos.y = -20.f + 2 * sin(0.1 * time);
+		p_transform.setPosition(pos);
+
+		glm::vec3 rot = p_transform.getRotation();
+		rot.y += 0.00001 * time;
+		p_transform.setRotation(rot);
+	}
+
 	inline glm::vec3 getPosition() {
 		return p_transform.getPosition();
 	}

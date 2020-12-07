@@ -7,10 +7,13 @@
 
 class Rubbish {
 public:
-	inline void draw(Camera camera, Light light) {
+	inline void draw(Camera camera, Light light, const float& elapsedTime) {
 		for (int i = 0; i < 50; i++) {
+			bottles[i].update(elapsedTime);
 			bottles[i].draw(camera, light);
+			cans[i].update(elapsedTime);
 			cans[i].draw(camera, light);
+			cups[i].update(elapsedTime);
 			cups[i].draw(camera, light);
 		}
 	}
