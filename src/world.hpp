@@ -57,6 +57,10 @@ public:
 
 		p_waterMesh.render();
 	}
+
+	inline void changeSkyTexture() {
+		p_skyTexture = Texture({ "data/textures/skybox/Daylight Box_Right.png", "data/textures/skybox/Daylight Box_Left.png", "data/textures/skybox/Daylight Box_Top.png", "data/textures/skybox/Daylight Box_Bottom.png", "data/textures/skybox/Daylight Box_Front.png", "data/textures/skybox/Daylight Box_Back.png" });
+	}
 private:
 	Mesh p_terrainMesh = Mesh("data/models/ground_plane.obj");
 	Texture p_terrainTexture = Texture("data/textures/sand.png");
@@ -72,6 +76,6 @@ private:
 
 	Mesh p_skyMesh = Mesh("data/models/skybox.obj");
 	Texture p_skyTexture = Texture({ "data/textures/skybox/miramar_right.jpg", "data/textures/skybox/miramar_left.jpg", "data/textures/skybox/miramar_top.jpg", "data/textures/skybox/miramar_bottom.jpg", "data/textures/skybox/miramar_front.jpg", "data/textures/skybox/miramar_back.jpg" });
-	Transform p_skyTransform = Transform(glm::vec3(0.0f, 50000.0f, 0.0f), glm::vec3(0.0f), glm::vec3(100000.0f, 100000.0f, 100000.0f));
+	Transform p_skyTransform = Transform(glm::vec3(0.0f), glm::vec3(0.0f), glm::vec3(100000.0f, 100000.0f, 100000.0f));
 	Shader p_skyShader = Shader("src/shaders/sky");
 };
