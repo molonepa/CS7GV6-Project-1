@@ -37,7 +37,7 @@ build/*
 external/*
 
 #assets
-data/*
+assets/*
 
 # imgui
 *.ini

@@ -51,8 +51,8 @@ public:
 	}
 
 private:
-	Mesh p_mesh = Mesh("data/models/rubbish/coffee_cup.obj");
-	Texture p_texture = Texture("data/textures/coffee_cup.png");
+	Mesh p_mesh = Mesh("assets/models/rubbish/coffee_cup.obj");
+	Texture p_texture = Texture("assets/textures/coffee_cup.png");
 	Transform p_transform = Transform(glm::vec3(random_float(-3000, 3000), -45.0f, random_float(-3000, 3000)));
 	Shader p_shader;
 

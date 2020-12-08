@@ -51,8 +51,8 @@ public:
 	}
 
 private:
-	Mesh p_mesh = Mesh("data/models/rubbish/bottle.obj");
-	Texture p_texture = Texture("data/textures/plastic_bottle.png");
+	Mesh p_mesh = Mesh("assets/models/rubbish/bottle.obj");
+	Texture p_texture = Texture("assets/textures/plastic_bottle.png");
 	Transform p_transform = Transform(glm::vec3(random_float(-3000, 3000), -45.0f, random_float(-3000, 3000)), glm::vec3(0.0f), glm::vec3(10.0f));
 	Shader p_shader;
 

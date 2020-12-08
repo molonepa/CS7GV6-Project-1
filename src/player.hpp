@@ -161,12 +161,12 @@ public:
 	}
 
 private:
-	Mesh p_boatMesh = Mesh("data/models/boat.obj");
-	Texture p_boatTexture = Texture("data/textures/boat.png");
+	Mesh p_boatMesh = Mesh("assets/models/boat.obj");
+	Texture p_boatTexture = Texture("assets/textures/boat.png");
 	Transform p_boatTransform = Transform(glm::vec3(0.0f, 0.0f, -1250.0f));
 
-	Mesh p_motorMesh = Mesh("data/models/motor.obj");
-	Texture p_motorTexture = Texture("data/textures/motor.png");
+	Mesh p_motorMesh = Mesh("assets/models/motor.obj");
+	Texture p_motorTexture = Texture("assets/textures/motor.png");
 	Transform p_motorTransform = Transform(glm::vec3(0.0f, 0.0f, 17.296f));
 
 	Shader p_shader;

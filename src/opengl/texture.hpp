@@ -8,7 +8,7 @@
 
 class Texture {
 public:
-	Texture(const std::string& filename = "data/textures/test_texture.png");
+	Texture(const std::string& filename = "assets/textures/test_texture.png");
 	Texture(const std::vector<std::string>& filenames);
 	virtual ~Texture();
 
