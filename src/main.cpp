@@ -7,8 +7,7 @@
 #include "world.hpp"
 #include "rubbish.hpp"
 
-//const float TOTAL_TIME_ALLOWED = 6000.0f;
-const float TOTAL_TIME_ALLOWED = 500.0f;
+const float TOTAL_TIME_ALLOWED = 6000.0f;
 
 int main() {
 	WindowManager window(1600, 900, "Application");
@@ -17,7 +16,7 @@ int main() {
 
 	EventHandler input;
 
-	Light light = Light(glm::vec3(500.0f), glm::vec3(0.78f, 0.88f, 1.0f), 0.5f);
+	Light light = Light(glm::vec3(5000.0f), glm::vec3(0.78f, 0.88f, 1.0f), 0.5f);
 
 	Camera camera;
 	Camera endCamera = Camera(glm::vec3(0.0f, 500.0f, 0.0f));

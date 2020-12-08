@@ -44,8 +44,8 @@ public:
 		p_waterShader.updateUniform("light_colour", light.getColour());
 		p_waterShader.updateUniform("light_position", light.getPosition());
 		p_waterShader.updateUniform("ambient_strength", light.getStrength());
-		p_waterShader.updateUniform("specular_strength", 1.0f);
-		p_waterShader.updateUniform("reflection_strength", 1.5f);
+		p_waterShader.updateUniform("specular_strength", 2.0f);
+		p_waterShader.updateUniform("reflection_strength", 8.0f);
 		p_waterShader.updateUniform("time", time);
 
 		p_waterShader.updateUniform("diffuse_map", 0);
@@ -68,7 +68,8 @@ private:
 	Shader p_terrainShader;
 
 	Mesh p_waterMesh = Mesh("assets/models/water.obj");
-	Texture p_waterDiffuseMap = Texture("assets/textures/water_clean.png");
+	//Texture p_waterDiffuseMap = Texture("assets/textures/water_clean.png");
+	Texture p_waterDiffuseMap = Texture("assets/textures/water_blue.png");
 	Texture p_waterNormalMap = Texture("assets/textures/water_normal_map.png");
 	Texture p_waterSpecularMap = Texture("assets/textures/water_specular_map.png");
 	Transform p_waterTransform = Transform(glm::vec3(0.0f, -55.0f, 0.0f), glm::vec3(0.0f), glm::vec3(10.0f, 1.0f, 10.0f));
