@@ -11,8 +11,6 @@ class World {
 public:
 	void draw(Camera camera, Light light, const float& time);
 
-	void changeSkyTexture();
-
 private:
 	Mesh p_terrainMesh = Mesh("assets/models/ground_plane.obj");
 	Texture p_terrainTexture = Texture("assets/textures/sand.png");

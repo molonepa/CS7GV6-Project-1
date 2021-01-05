@@ -50,7 +50,3 @@ void World::draw(Camera camera, Light light, const float& time) {
 
 	p_waterMesh.render();
 }
-
-void World::changeSkyTexture() {
-	p_skyTexture = Texture({ "assets/textures/skybox/Daylight Box_Right.png", "assets/textures/skybox/Daylight Box_Left.png", "assets/textures/skybox/Daylight Box_Top.png", "assets/textures/skybox/Daylight Box_Bottom.png", "assets/textures/skybox/Daylight Box_Front.png", "assets/textures/skybox/Daylight Box_Back.png" });
-}

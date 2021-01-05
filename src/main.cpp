@@ -7,7 +7,7 @@
 #include "world.hpp"
 #include "rubbish.hpp"
 
-const float TOTAL_TIME_ALLOWED = 6000.0f;
+const float TOTAL_TIME_ALLOWED = 3000.0f;
 
 int main() {
 	WindowManager window(1600, 900, "Application");
@@ -63,7 +63,7 @@ int main() {
 		ImGui::Text("Capacity: %0.1f/%d", player.getCurrentCapacity(), maxCapacity);
 		//ImGui::Text("Delta time: %0.2f", clock.getDeltaTime());
 		ImGui::Text("Time remaining: %ds", (int)(TOTAL_TIME_ALLOWED - clock.getElapsedTime()) / 100);
-		ImGui::Text("\nControls:\nmouse - move camera\nW - move forwards\nS - move backwards\nA - turn left\nD - turn right\nM - enter map mode\nU - unload");
+		ImGui::Text("\nControls:\nmouse - move camera\nW - move forwards\nS - move backwards\nA - turn left\nD - turn right\nM - enter map mode");
 		ImGui::End();
 
 		camera.update(player.getCameraPosition());
@@ -73,9 +73,10 @@ int main() {
 		clock.tick();
 	}
 
+	totalCollectedRubbish = player.getCurrentCapacity();
+
 	std:: string message;
-	if (totalCollectedRubbish >= 100.0f) {
-		world.changeSkyTexture();
+	if (totalCollectedRubbish >= 25.0f) {
 		message = "Congratulations, you won!";
 	}
 	else {

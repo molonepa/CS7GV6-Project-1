@@ -1,7 +1,7 @@
 #include "texture.hpp"
 
 #define STB_IMAGE_IMPLEMENTATION
-#include "../utils/stb_image.h"
+#include "../../external/stb/stb_image.h"
 
 Texture::Texture(const std::string& filename) {
 	stbi_set_flip_vertically_on_load(true);
